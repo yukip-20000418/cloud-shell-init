@@ -11,8 +11,12 @@ PS1='\n\[\e[1;33m\][$(date +%Y/%m/%d) \t \w]\n\$\[\e[0m\] '
 ```
 
 ```
+# project の一覧
+gcloud projects list
 # project の指定
 gcloud config set project dev-chottodake-open-test
+# project の削除
+gcloud projects delete dev-chottodake-admin
 ```
 
 ```
@@ -34,12 +38,8 @@ gcloud services list --available --format='csv(TITLE,NAME)' \
 ```
 
 ```
-# region 一覧
+# region , zone 一覧
 gcloud compute regions list --format='csv(NAME)'
-```
-
-```
-# zones 一覧
 gcloud compute zones list --format='csv(REGION,NAME)'
 ```
 
