@@ -1,0 +1,59 @@
+```
+# timezone の設定
+#sudo dpkg-reconfigure tzdata
+export TZ=Asia/Tokyo
+```
+
+```
+# プロンプの書き方で上だと４文字残るけど下だと大丈夫
+PS1='\n\e[1;33m[$(date +%Y/%m/%d) \t \w]\n\$\e[0m '
+PS1='\n\[\e[1;33m\][$(date +%Y/%m/%d) \t \w]\n\$\[\e[0m\] '
+```
+
+```
+# project の指定
+gcloud config set project dev-chottodake-open-test
+```
+
+```
+# サービスの起動停止など
+gcloud services list --format='csv(TITLE,NAME)'
+gcloud services list --available
+gcloud services enable cloudresourcemanager.googleapis.com
+gcloud services enable compute.googleapis.com
+gcloud services disable compute.googleapis.com --force
+
+gcloud services list --available --format='csv(TITLE,NAME)' \
+| awk 'NR>=2 {print}' \
+| sort \
+| awk -F, '{
+  printf("# ")
+  for(i=1;i<NF;++i){printf("%s ",$i)}
+  printf("\ngcloud services disable %s --force\n",$NF)}' \
+> service-list.sh
+```
+
+```
+# region 一覧
+gcloud compute regions list --format='csv(NAME)'
+```
+
+```
+# zones 一覧
+gcloud compute zones list --format='csv(REGION,NAME)'
+```
+
+```
+# compute image 一覧
+gcloud compute images list --format='csv(PROJECT,NAME,FAMILY)' | grep ubuntu | grep mini | grep lts
+```
+
+```
+# terraform でのグラフ化
+terraform graph | dot -Tpng > graph.png
+```
+
+```
+# compute engine の startup-script log の調べ方 
+sudo journalctl -u google-startup-scripts.service
+```
