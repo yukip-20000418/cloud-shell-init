@@ -1,4 +1,11 @@
 ```
+# cloud shell の初期化
+cd /
+sudo rm -rf $HOME
+# このあとウインドウ右上のその他メニューから再起動する。
+```
+
+```
 # timezone の設定
 #sudo dpkg-reconfigure tzdata
 export TZ=Asia/Tokyo
