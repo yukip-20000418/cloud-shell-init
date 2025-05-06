@@ -18,6 +18,27 @@ PS1='\n\[\e[1;33m\][$(date +%Y/%m/%d) \t \w]\n\$\[\e[0m\] '
 ```
 
 ```
+# project の作成に必要な情報
+gcloud organizations list
+# 組織直下のフォルダ一覧を表示する場合
+gcloud resource-manager folders list --organization=YOUR_ORGANIZATION_ID
+# 特定のフォルダ配下のフォルダ一覧を表示する場合 (親フォルダのIDが必要)
+gcloud resource-manager folders list --folder=YOUR_PARENT_FOLDER_ID
+
+# 利用可能な課金アカウントのリストを表示
+gcloud beta billing accounts list
+# プロジェクトと課金アカウントをリンク
+gcloud beta billing projects link YOUR_PROJECT_ID --billing-account=YOUR_BILLING_ACCOUNT_ID
+```
+
+```
+# 組織またはフォルダに紐付けて作成
+# プロジェクト名は指定しなければプロジェクト ID と同じ
+gcloud projects create YOUR_PROJECT_ID --name="My First Project" --organization=YOUR_ORGANIZATION_ID
+gcloud projects create YOUR_PROJECT_ID --name="My First Project" --folder=YOUR_FOLDER_ID
+```
+
+```
 # project の一覧
 gcloud projects list
 # project の指定
